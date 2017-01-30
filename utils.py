@@ -168,7 +168,7 @@ def naked_twins(values):
                         for elim_box in unit:
                             if elim_box != box and elim_box != box2 and digit in result[elim_box] and len(result[elim_box]) >1:
                                 # Eliminate the naked twins as possibilities for their peers
-                                display(values)
+                                # display(values)
                                 logging.debug('naked twins {} {} {}'.format(box, box2, values[box]))
                                 logging.debug('naked twins: removing digit {} from {} {}'.format(digit, elim_box, values[elim_box]))
                                 assign_value(result, elim_box, result[elim_box].replace(digit, ''))
