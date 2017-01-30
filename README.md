@@ -6,8 +6,6 @@ Q: How do we use constraint propagation to solve the naked twins problem?
 A: The naked twins' solution allows the elimination of the twin's peer's values that are constrained by the naked twins.  For example, if a Sudoku unit (a row, a column or a 3X3 square) has two boxes with value '42' then no other peer contained in that unit can have either the digit '4' or the digit '2'.  more info: http://www.sudokudragon.com/tutorialhiddentwins.htm.  This can be extended to naked tripits.  
 This helps reduce the search tree when trying to solve harder games making the solver more efficient.
 
-I do not recommend googling 'naked twins' :(.
-
 # Question 2 (Diagonal Sudoku)
 Q: How do we use constraint propagation to solve the diagonal sudoku problem?  
 A: The diagonal sudoku puzzle game has a new rule. The two main diagonals of the puzzle board are included in the unitlist.  The unitlist will now have rows, columns or 3X3 squares and the two diagonals.  This additional puzzle rule must be used when selecting each box's value.  This can lead to a smaller search spaces and better puzzle solving.
