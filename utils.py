@@ -106,6 +106,11 @@ def reduce_puzzle(values):
     """
     Iterate eliminate() and only_choice(). If at some point, there is a box with no available values, return False.
     If the sudoku is solved, return the sudoku.
+
+    Used by search to solve the puzzle.
+
+    Repeatedly try different constraints to reduce the digits in each box.
+
     If after an iteration of both functions, the sudoku remains the same, return the sudoku.
     Input: A sudoku in dictionary form.
     Output: The resulting sudoku in dictionary form.
