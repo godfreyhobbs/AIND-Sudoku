@@ -1,3 +1,5 @@
+import logging
+
 rows = 'ABCDEFGHI'
 cols = '123456789'
 
@@ -108,7 +110,6 @@ def reduce_puzzle(values):
     Input: A sudoku in dictionary form.
     Output: The resulting sudoku in dictionary form.
     """
-    solved_values = [box for box in values.keys() if len(values[box]) == 1]
     stalled = False
     while not stalled:
         solved_values_before = len([box for box in values.keys() if len(values[box]) == 1])
@@ -142,7 +143,6 @@ def search(values):
     for val in values[min_box]:
         new_sudoku = values.copy()
         assign_value(new_sudoku, min_box, val)
-        # new_sudoku[min_box] = val
         attempt = search(new_sudoku)
         if attempt:
             return attempt
@@ -156,31 +156,22 @@ def naked_twins(values):
     Returns:
         the values dictionary with the naked twins eliminated from peers.
     """
-
-    # for box in solved_values:
-    #     digit = values[box]
-    #     for peer in peers[box]:
-    #         assign_value(values, peer, values[peer].replace(digit, ''))
-    #         # values[peer] =
     result =  values.copy()
     for unit in unitlist:
         unsolved_boxes = [box for box in unit if len(values[box]) == 2]
 
         for box in unsolved_boxes:
             for box2 in unsolved_boxes:
+                # Find all instances of naked twins
                 if box != box2 and values[box] == values[box2]:
                     for digit in values[box]:
                         for elim_box in unit:
                             if elim_box != box and elim_box != box2 and digit in result[elim_box] and len(result[elim_box]) >1:
+                                # Eliminate the naked twins as possibilities for their peers
                                 display(values)
-                                # print ('naked twins {} {} {}'.format(box, box2, values[box]))
-                                # print ('naked twins: removing digit {} from {} {}'.format(digit, elim_box, values[elim_box]))
+                                logging.debug('naked twins {} {} {}'.format(box, box2, values[box]))
+                                logging.debug('naked twins: removing digit {} from {} {}'.format(digit, elim_box, values[elim_box]))
                                 assign_value(result, elim_box, result[elim_box].replace(digit, ''))
-                                # run eliminate
-                                # assign_value(values, dplaces[0], digit)
-                                # values[dplaces[0]] = digit
     return result
 
 
-    # Find all instances of naked twins
-    # Eliminate the naked twins as possibilities for their peers
