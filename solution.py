@@ -1,4 +1,4 @@
-from objects.utils import *
+from utils import *
 
 def solve(grid):
     values = grid_values(grid)
